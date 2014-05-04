@@ -10,4 +10,4 @@
 
 (require.main === module)
 	? require('./command') 					// <-- ran from the command line
-	: module.exports = require('./parser');	// <-- required as a node module
+	: module.exports = require('./index');	// <-- required as a node module
