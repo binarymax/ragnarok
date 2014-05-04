@@ -1,6 +1,6 @@
 {
   "name": "ragnarok",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Integration testing for Heimdall APIs",
   "main": "ragnarok.js",
   "scripts": {
@@ -10,10 +10,10 @@
     "type": "git",
     "url": "https://github.com/binarymax/ragnarok.git"
   },
-  "dependencies":{
-    "commander":"2.2.x",
-    "mocha":"1.18.x",
-    "should":"3.3.x"
+  "dependencies": {
+    "commander": "2.2.x",
+    "mocha": "1.18.x",
+    "should": "3.3.x"
   },
   "keywords": [
     "test",
