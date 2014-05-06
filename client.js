@@ -1,33 +1,38 @@
 //Gets Heimdall API data from a server
-
+var njord = require('njord');
 var url = require('url');
 
-var protocol;
+var Client = module.exports = function(root,credentials,callback) {
 
-var Client = module.exports = {};
+	var session = njord.session(root);
 
-Client.get = function(uri,callback) {
+	session.get('api',function(err,data) {
+	
+		//Get the API info
+		var json = null;
 
-	uri = url.parse(uri);
+		try{json = JSON.parse(data);} catch(ex) {callback(ex);}
+		
+		if (json) {
 
-	protocol = require(uri.protocol.substr(0,uri.protocol.length-1));
+			session.api = json;
 
-	protocol.get(uri,function(res){
+			if(credentials && credentials.login && credentials.username && credentials.password) {
 
-		var data = "";
+				//Login needed for API access
+				session.login(credentials.login,credentials.username,credendials.password,function(err){
+					err?callback(err):callback(null,session);
+				});
 
-	    res.on('data', function(chunk) { data+=chunk; });
+			} else {
 
-	    res.on('end', function() {
-	    	var json = null;
-	    	try {
-	    		json = JSON.parse(data);
-	    	} catch(ex) {
-	    		callback(ex);
-	    	}
-	    	if (json) callback(null,json);
-	    });
+				//No login needed
+				callback(null,session);
 
-	}).on('error',callback);
+			}
+
+		}
+
+	});
 
 };

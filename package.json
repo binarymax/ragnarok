@@ -13,7 +13,8 @@
   "dependencies": {
     "commander": "2.2.x",
     "mocha": "1.18.x",
-    "should": "3.3.x"
+    "should": "3.3.x",
+    "njord": "*"
   },
   "keywords": [
     "test",

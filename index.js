@@ -5,6 +5,7 @@ var Ragnarok = module.exports = {};
 var mocha = require('mocha');
 var should = require('should');
 var client = require('./client');
+var connection = null;
 
 var test = function() {
 
@@ -16,12 +17,14 @@ var init = function(api,callback) {
 };
 
 // --------------------------------------------------------------------------
-var run = Ragnarok.run = function(url,milliseconds,callback) {
-	client.get(url,function(err,api){
+var run = Ragnarok.run = function(url,milliseconds,credentials,callback) {
+	
+	client(url,credentials,function(err,session){
 		if(err) {
 			callback(err);
 		} else {
-			init(api,callback);
+			connection = session;
+			init(session.api,callback);
 		}
 	});
 };
