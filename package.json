@@ -1,6 +1,6 @@
 {
   "name": "ragnarok",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Integration testing for Heimdall APIs",
   "main": "ragnarok.js",
   "scripts": {
